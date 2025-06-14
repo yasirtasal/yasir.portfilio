@@ -1,658 +1,637 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ahmad Yasir Tasal | Quantum Developer</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>Ahmad Yasir Tasal | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --quantum-blue: #2563eb;
-      --quantum-indigo: #4f46e5;
-      --quantum-purple: #7c3aed;
-      --dark-bg: #0f172a;
-      --light-bg: #1e293b;
+      --primary-color: #00c6ff;
+      --secondary-color: #0072ff;
+      --dark-color: #0f2027;
+      --light-color: #f8f9fa;
+      --gray-color: #6c757d;
+      --dark-bg: #121212;
+      --card-bg: #1e1e1e;
+    }
+    
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
     }
     
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--dark-bg);
-      color: white;
-    }
-    
-    .gradient-text {
-      background: linear-gradient(90deg, var(--quantum-blue), var(--quantum-purple));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    
-    .card-hover {
+      font-family: 'Poppins', sans-serif;
+      background: var(--dark-bg);
+      color: var(--light-color);
+      overflow-x: hidden;
       transition: all 0.3s ease;
-      background: rgba(30, 41, 59, 0.5);
+    }
+    
+    /* Header Styles */
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop') center/cover;
+      opacity: 0.3;
+      z-index: -1;
+    }
+    
+    .profile-container {
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    
+    .profile-container img {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: contain;
+    }
+    
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    header p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      color: var(--gray-color);
+      max-width: 600px;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    
+    .social-icons a {
+      color: var(--light-color);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(18, 18, 18, 0.9);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
       backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
     
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
-      background: rgba(30, 41, 59, 0.7);
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--primary-color);
     }
     
-    .nav-link {
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    nav a {
+      color: var(--light-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
       position: relative;
     }
     
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--quantum-blue), var(--quantum-purple));
-      transition: width 0.3s ease;
+    nav a:hover {
+      color: var(--primary-color);
     }
     
-    .nav-link:hover::after {
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      bottom: -5px;
+      left: 0;
+      transition: width 0.3s;
+    }
+    
+    nav a:hover::after {
       width: 100%;
     }
     
-    .skill-bar {
-      height: 6px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 3px;
-    }
-    
-    .skill-progress {
-      height: 100%;
-      background: linear-gradient(90deg, var(--quantum-blue), var(--quantum-purple));
-      border-radius: 3px;
-      transition: width 1s ease;
-    }
-    
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -28px;
-      top: 5px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--quantum-blue);
-    }
-    
-    .timeline-item::after {
-      content: '';
-      position: absolute;
-      left: -22px;
-      top: 20px;
-      bottom: -25px;
-      width: 2px;
-      background: rgba(37, 99, 235, 0.3);
-    }
-    
-    .timeline-item:last-child::after {
+    .nav-menu-btn {
       display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
     }
     
-    .avatar-glow {
-      box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+    /* Section Styles */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1000px;
+      margin: auto;
     }
     
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+      position: relative;
+      display: inline-block;
     }
     
-    .floating {
-      animation: float 6s ease-in-out infinite;
+    h2::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      bottom: -10px;
+      left: 0;
+    }
+    
+    /* About Section */
+    .about-content {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .about-text {
+      flex: 1;
+    }
+    
+    .about-text p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    
+    .education-item {
+      margin-bottom: 1.5rem;
+    }
+    
+    .education-item h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.3rem;
+    }
+    
+    .education-item h3 a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .education-item h3 a:hover {
+      color: var(--secondary-color);
+      text-decoration: underline;
+    }
+    
+    .education-item .date {
+      color: var(--gray-color);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    /* Skills Section */
+    .skills-container, .languages-grid, .interests-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .skill-card, .language-card, .interest-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border-left: 3px solid var(--primary-color);
+    }
+    
+    .skill-card:hover, .language-card:hover, .interest-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 198, 255, 0.1);
+      background: rgba(0, 198, 255, 0.05);
+    }
+    
+    .skill-card i, .interest-card i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+    
+    .skill-card h3, .language-card h3, .interest-card h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Experience Section */
+    .experience-item {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      border-left: 3px solid var(--primary-color);
+    }
+    
+    .experience-item h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    
+    .experience-item .date {
+      color: var(--gray-color);
+      font-style: italic;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    .experience-item p {
+      line-height: 1.6;
+    }
+    
+    /* Contact Section */
+    .contact-info {
+      margin-top: 2rem;
+    }
+    
+    .contact-info p {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .contact-info a {
+      color: var(--light-color);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    
+    .contact-info a:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+    
+    .contact-info i {
+      width: 30px;
+      color: var(--primary-color);
+    }
+    
+    /* Footer */
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-social a {
+      color: var(--light-color);
+      font-size: 1.5rem;
+      transition: all 0.3s;
+    }
+    
+    .footer-social a:hover {
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      color: var(--gray-color);
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--dark-bg);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        transition: all 0.5s ease;
+      }
+      
+      .nav-links.active {
+        left: 0;
+      }
+      
+      .nav-menu-btn {
+        display: block;
+      }
+      
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      header p {
+        font-size: 1.1rem;
+      }
+      
+      .about-content {
+        flex-direction: column;
+      }
+      
+      .skills-container, .languages-grid, .interests-container {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      }
     }
   </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b]">
-  <!-- Navigation -->
-  <nav class="fixed w-full bg-[#0f172a]/90 backdrop-blur-md z-50 border-b border-[#1e293b]">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <a href="#" class="text-2xl font-bold gradient-text">AYT</a>
-      
-      <div class="hidden md:flex space-x-8">
-        <a href="#about" class="nav-link text-white/80 hover:text-white">About</a>
-        <a href="#skills" class="nav-link text-white/80 hover:text-white">Skills</a>
-        <a href="#experience" class="nav-link text-white/80 hover:text-white">Experience</a>
-        <a href="#projects" class="nav-link text-white/80 hover:text-white">Projects</a>
-        <a href="#contact" class="nav-link text-white/80 hover:text-white">Contact</a>
-      </div>
-      
-      <button id="menu-button" class="md:hidden text-white">
-        <i class="fas fa-bars text-xl"></i>
-      </button>
+<body>
+  <nav>
+    <div class="nav-logo">Ahmad Yasir Tasal</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home" class="active">Accueil</a>
+      <a href="#about">À propos</a>
+      <a href="#education">Formation</a>
+      <a href="#skills">Compétences</a>
+      <a href="#languages">Langues</a>
+      <a href="#experience">Expérience</a>
+      <a href="#interests">Centres d'intérêt</a>
+      <a href="#contact">Contact</a>
     </div>
-    
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-[#0f172a] px-6 py-4 border-t border-[#1e293b]">
-      <div class="flex flex-col space-y-4">
-        <a href="#about" class="nav-link text-white/80 hover:text-white">About</a>
-        <a href="#skills" class="nav-link text-white/80 hover:text-white">Skills</a>
-        <a href="#experience" class="nav-link text-white/80 hover:text-white">Experience</a>
-        <a href="#projects" class="nav-link text-white/80 hover:text-white">Projects</a>
-        <a href="#contact" class="nav-link text-white/80 hover:text-white">Contact</a>
-      </div>
+    <div class="nav-menu-btn" id="menuBtn">
+      <i class="fas fa-bars"></i>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="min-h-screen flex items-center pt-20">
-    <div class="max-w-7xl mx-auto px-6 py-16 md:py-24 flex flex-col md:flex-row items-center">
-      <div class="md:w-1/2 mb-12 md:mb-0">
-        <div class="mb-6 flex items-center">
-          <div class="w-3 h-3 rounded-full bg-[var(--quantum-blue)] mr-3"></div>
-          <span class="text-[var(--quantum-blue)] text-sm font-medium">QUANTUM DEVELOPER</span>
-        </div>
-        
-        <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">
-          Ahmad Yasir <span class="gradient-text">Tasal</span>
-        </h1>
-        
-        <h2 class="text-xl md:text-2xl text-white/80 mb-6">
-          Building quantum-inspired solutions for the digital world
-        </h2>
-        
-        <p class="text-lg text-white/70 mb-8 max-w-lg">
-          Merging quantum computing principles with modern web development to create innovative digital experiences.
-        </p>
-        
-        <div class="flex space-x-4">
-          <a href="#contact" class="bg-gradient-to-r from-[var(--quantum-blue)] to-[var(--quantum-purple)] text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition">
-            Contact Me
-          </a>
-          <a href="#projects" class="px-6 py-3 border border-[var(--quantum-blue)] text-white rounded-lg font-medium hover:bg-[rgba(37,99,235,0.1)] transition">
-            View Projects
-          </a>
-        </div>
-      </div>
-      
-      <div class="md:w-1/2 flex justify-center relative">
-        <div class="relative">
-          <div class="w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-[var(--quantum-blue)] avatar-glow floating">
-            <img src="hahaphoto-removebg-preview (1).png" alt="Ahmad Yasir Tasal" class="w-full h-full object-cover">
-          </div>
-          
-          <div class="absolute -bottom-4 -right-4 bg-gradient-to-r from-[var(--quantum-blue)] to-[var(--quantum-purple)] text-white px-4 py-2 rounded-lg font-bold flex items-center">
-            <div class="w-2 h-2 rounded-full bg-white mr-2"></div>
-            <span class="text-sm">Available 2025</span>
-          </div>
-        </div>
+  <header id="home">
+    <div class="profile-container">
+      <img src="Keep the same scene and composition, but regenerate the image in detailed anime style. Make sure the character looks exactly like me_ match my facial features, hairstyle, skin tone, and expression as seen in the or.png" alt="Ahmad Yasir Tasal">
+    </div>
+    <h1>Ahmad Yasir TASAL</h1>
+    <p>Étudiant en Informatique | Passionné par la Data Science</p>
+    <div class="social-icons">
+      <a href="https://linkedin.com/in/ahmad-yasir-tasal" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/yasirtasal" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="mailto:yasirtasal1@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <a href="#about" class="scroll-down">
+      <i class="fas fa-chevron-down"></i>
+    </a>
+  </header>
+
+  <section id="about" class="fade-in">
+    <h2>À propos</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>Actuellement en BTS SIO (Services Informatiques aux Organisations) option SLAM (Solutions Logicielles et Applications Métiers) au CFA INSTA à Paris. Passionné par le développement web et la data science, je cherche à acquérir des compétences techniques approfondies tout en contribuant à des projets concrets.</p>
+        <p>Je recherche un contrat d'apprentissage avec le rythme, 2 jours en formation, 3 jours en entreprise, disponible à partir de septembre 2025. Ouvert également à des stages disponibles à partir de juin 2025.</p>
+        <p>Mon objectif à long terme est de devenir Data Scientist, en combinant mes compétences en développement avec l'analyse de données.</p>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="py-20">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex items-center mb-12">
-        <h2 class="text-3xl font-bold gradient-text mr-4">About Me</h2>
-        <div class="flex-1 h-px bg-gradient-to-r from-[var(--quantum-blue)] to-[var(--quantum-purple)]"></div>
+  <section id="education" class="fade-in">
+    <h2>Formation</h2>
+    <div class="education-item">
+      <h3><a href="https://cfa-insta.fr/bts-sio/" target="_blank">BTS SIO Informatique – Développement Web & Réseaux</a></h3>
+      <span class="date">Janvier 2025 - Présent</span>
+      <p><a href="https://cfa-insta.fr/" target="_blank">CFA INSTA - Paris, France</a></p>
+    </div>
+    <div class="education-item">
+      <h3><a href="https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/licences-0/licence-discipline/la-l1-une-annee-dintegration-3" target="_blank">(L0) Mathématiques et Informatique</a></h3>
+      <span class="date">Septembre 2024 - Jan 2025</span>
+      <p><a href="https://www.sorbonne-universite.fr/#Sciences%20&%20Ing%C3%A9nierie" target="_blank">Sorbonne Université - Paris, France</a></p>
+    </div>
+    <div class="education-item">
+      <h3><a href="https://fc.sorbonne-universite.fr/actualite/le-du-respe-une-reprise-detudes-pour-les-personnes-exilees/#:~:text=Le%20DU%20RESPE%20%3ADipl%C3%B4me%20Universitaire,dans%20leur%20reprise%20d'%C3%A9tudes." target="_blank">DU RESPE (Diplôme Universitaire de Retour aux Études Supérieures des Personnes Exilées)</a></h3>
+      <span class="date">Septembre 2023 - Mai 2024</span>
+      <p><a href="https://www.sorbonne-universite.fr/#Sciences%20&%20Ing%C3%A9nierie" target="_blank">Sorbonne Université - Paris, France</a></p>
+    </div>
+    <div class="education-item">
+      <h3><a href="https://www.unilim.fr/mdl/formation-fle/passerelle/diplome-universitaire-passerelle-b2/" target="_blank">Diplôme d'université- PASSERELLE B1 Langue Française</a></h3>
+      <span class="date">Janvier 2023 - Mai 2023</span>
+      <p><a href="https://www.unilim.fr/" target="_blank">Université de Limoges - Limoges, France</a></p>
+    </div>
+    <div class="education-item">
+      <h3>Baccalauréat Générale</h3>
+      <span class="date">2020</span>
+      <p><a href="https://www.facebook.com/people/Sultan-Mahmood-Ghaznavi-Private-High-Schools-Colleges-System/100064803816200/" target="_blank">Sultan Mahmood Ghaznavi High School & College - Kabul, Afghanistan (Très Bien)</a></p>
+  </div>
+  </section>
+
+  <section id="skills" class="fade-in">
+    <h2>Compétences Techniques</h2>
+    <div class="skills-container">
+      <div class="skill-card">
+        <i class="fab fa-html5"></i>
+        <h3>HTML</h3>
       </div>
-      
-      <div class="grid md:grid-cols-2 gap-12">
-        <div class="card-hover p-8 rounded-xl">
-          <h3 class="text-xl font-semibold text-white mb-4">Background</h3>
-          <p class="text-white/80 mb-6">
-            I'm a quantum computing enthusiast and full-stack developer currently pursuing my BTS SIO (Services Informatiques aux Organisations) with a specialization in SLAM (Solutions Logicielles et Applications Métiers) at CFA INSTA in Paris.
-          </p>
-          <p class="text-white/80">
-            My unique approach combines traditional programming with quantum computing principles, creating solutions that push the boundaries of conventional development.
-          </p>
-        </div>
-        
-        <div class="card-hover p-8 rounded-xl">
-          <h3 class="text-xl font-semibold text-white mb-4">Objectives</h3>
-          <div class="space-y-6">
-            <div class="flex items-start">
-              <div class="bg-[rgba(37,99,235,0.1)] p-2 rounded-lg mr-4">
-                <i class="fas fa-atom text-[var(--quantum-blue)]"></i>
-              </div>
-              <div>
-                <h4 class="font-medium text-white mb-1">Quantum Development</h4>
-                <p class="text-white/80">
-                  Developing applications that leverage quantum principles for enhanced performance.
-                </p>
-              </div>
-            </div>
-            
-            <div class="flex items-start">
-              <div class="bg-[rgba(79,70,229,0.1)] p-2 rounded-lg mr-4">
-                <i class="fas fa-lock text-[var(--quantum-indigo)]"></i>
-              </div>
-              <div>
-                <h4 class="font-medium text-white mb-1">Quantum Security</h4>
-                <p class="text-white/80">
-                  Implementing quantum-resistant cryptography in modern applications.
-                </p>
-              </div>
-            </div>
-            
-            <div class="flex items-start">
-              <div class="bg-[rgba(124,58,237,0.1)] p-2 rounded-lg mr-4">
-                <i class="fas fa-brain text-[var(--quantum-purple)]"></i>
-              </div>
-              <div>
-                <h4 class="font-medium text-white mb-1">Quantum AI</h4>
-                <p class="text-white/80">
-                  Exploring quantum machine learning algorithms for pattern recognition.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="skill-card">
+        <i class="fab fa-css3-alt"></i>
+        <h3>CSS</h3>
+      </div>
+      <div class="skill-card">
+        <i class="fab fa-js"></i>
+        <h3>JavaScript</h3>
+      </div>
+      <div class="skill-card">
+        <i class="fab fa-php"></i>
+        <h3>PHP</h3>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-database"></i>
+        <h3>MySQL</h3>
+      </div>
+      <div class="skill-card">
+        <i class="fab fa-python"></i>
+        <h3>Python</h3>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-code"></i>
+        <h3>C</h3>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-network-wired"></i>
+        <h3>Réseaux</h3>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-server"></i>
+        <h3>XAMPP</h3>
+      </div>
+    </div>
+    
+    <h3 style="margin-top: 2rem;">Outils</h3>
+    <div class="skills-container" style="margin-top: 1rem;">
+      <div class="skill-card">
+        <i class="fas fa-code"></i>
+        <h3>VS Code</h3>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-cube"></i>
+        <h3>VirtualBox</h3>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Wireshark</h3>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-terminal"></i>
+        <h3>PuTTY</h3>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-project-diagram"></i>
+        <h3>Packet Tracer</h3>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-laptop-code"></i>
+        <h3>Code::Blocks</h3>
       </div>
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="py-20 bg-[#1e293b]/50">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex items-center mb-12">
-        <h2 class="text-3xl font-bold gradient-text mr-4">Skills</h2>
-        <div class="flex-1 h-px bg-gradient-to-r from-[var(--quantum-blue)] to-[var(--quantum-purple)]"></div>
+  <section id="languages" class="fade-in">
+    <h2>Langues</h2>
+    <div class="languages-grid">
+      <div class="language-card">
+        <h3>Pashto</h3>
+        <p>Langue maternelle</p>
       </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="card-hover p-8 rounded-xl">
-          <h3 class="text-xl font-semibold text-white mb-6">Technical Skills</h3>
-          
-          <div class="space-y-6">
-            <div>
-              <div class="flex justify-between text-white/80 mb-2">
-                <span>JavaScript/TypeScript</span>
-                <span>90%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 90%;"></div>
-              </div>
-            </div>
-            
-            <div>
-              <div class="flex justify-between text-white/80 mb-2">
-                <span>React/Next.js</span>
-                <span>85%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 85%;"></div>
-              </div>
-            </div>
-            
-            <div>
-              <div class="flex justify-between text-white/80 mb-2">
-                <span>Python</span>
-                <span>80%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 80%;"></div>
-              </div>
-            </div>
-            
-            <div>
-              <div class="flex justify-between text-white/80 mb-2">
-                <span>Quantum Computing</span>
-                <span>75%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 75%;"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card-hover p-8 rounded-xl">
-          <h3 class="text-xl font-semibold text-white mb-6">Tools & Technologies</h3>
-          
-          <div class="flex flex-wrap gap-3 mb-8">
-            <span class="px-3 py-1 bg-[rgba(37,99,235,0.1)] text-[var(--quantum-blue)] rounded-full text-sm">Qiskit</span>
-            <span class="px-3 py-1 bg-[rgba(37,99,235,0.1)] text-[var(--quantum-blue)] rounded-full text-sm">Cirq</span>
-            <span class="px-3 py-1 bg-[rgba(79,70,229,0.1)] text-[var(--quantum-indigo)] rounded-full text-sm">TensorFlow</span>
-            <span class="px-3 py-1 bg-[rgba(79,70,229,0.1)] text-[var(--quantum-indigo)] rounded-full text-sm">Node.js</span>
-            <span class="px-3 py-1 bg-[rgba(124,58,237,0.1)] text-[var(--quantum-purple)] rounded-full text-sm">PostgreSQL</span>
-            <span class="px-3 py-1 bg-[rgba(124,58,237,0.1)] text-[var(--quantum-purple)] rounded-full text-sm">Docker</span>
-            <span class="px-3 py-1 bg-[rgba(37,99,235,0.1)] text-[var(--quantum-blue)] rounded-full text-sm">Git</span>
-            <span class="px-3 py-1 bg-[rgba(79,70,229,0.1)] text-[var(--quantum-indigo)] rounded-full text-sm">AWS</span>
-          </div>
-          
-          <h3 class="text-xl font-semibold text-white mb-6 mt-8">Languages</h3>
-          
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <div class="flex justify-between text-white/80 mb-2">
-                <span>Pashto</span>
-                <span>100%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 100%;"></div>
-              </div>
-            </div>
-            
-            <div>
-              <div class="flex justify-between text-white/80 mb-2">
-                <span>French</span>
-                <span>80%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 80%;"></div>
-              </div>
-            </div>
-            
-            <div>
-              <div class="flex justify-between text-white/80 mb-2">
-                <span>English</span>
-                <span>90%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 90%;"></div>
-              </div>
-            </div>
-            
-            <div>
-              <div class="flex justify-between text-white/80 mb-2">
-                <span>Dari</span>
-                <span>95%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 95%;"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="language-card">
+        <h3>Français</h3>
+        <p>Niveau B2</p>
+      </div>
+      <div class="language-card">
+        <h3>Anglais</h3>
+        <p>Courant</p>
+      </div>
+      <div class="language-card">
+        <h3>Dari</h3>
+        <p>Bilingue</p>
+      </div>
+      <div class="language-card">
+        <h3>Urdu</h3>
+        <p>Courant</p>
+      </div>
+      <div class="language-card">
+        <h3>Arabe</h3>
+        <p>Notions</p>
       </div>
     </div>
   </section>
 
-  <!-- Experience Section -->
-  <section id="experience" class="py-20">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex items-center mb-12">
-        <h2 class="text-3xl font-bold gradient-text mr-4">Experience</h2>
-        <div class="flex-1 h-px bg-gradient-to-r from-[var(--quantum-blue)] to-[var(--quantum-purple)]"></div>
+  <section id="experience" class="fade-in">
+    <h2>Expérience Professionnelle</h2>
+    <div class="experience-item">
+      <h3>Équipe de Restauration - Jeux Olympiques et Paralympiques Paris 2024</h3>
+      <span class="date">Juillet 2024 - Août 2024</span>
+      <p>Service client, gestion de produits en libre-service, coordination d'équipe et respect des normes d'hygiène dans un environnement international et multiculturel.</p>
+    </div>
+  </section>
+
+  <section id="interests" class="fade-in">
+    <h2>Centres d'intérêt</h2>
+    <div class="interests-container">
+      <div class="interest-card">
+        <i class="fas fa-laptop-code"></i>
+        <h3>Informatique</h3>
       </div>
-      
-      <div class="relative pl-8">
-        <!-- Timeline Item 1 -->
-        <div class="timeline-item relative pb-12">
-          <div class="card-hover p-6 rounded-xl">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-              <h3 class="text-xl font-semibold text-white">
-                BTS SIO - Quantum Development Track
-              </h3>
-              <span class="text-sm bg-[rgba(37,99,235,0.1)] text-[var(--quantum-blue)] px-3 py-1 rounded-full mt-2 md:mt-0">2025 - Present</span>
-            </div>
-            <p class="text-white/70 mb-2">
-              CFA INSTA - Paris, France
-            </p>
-            <p class="text-white/60">
-              Specializing in quantum-inspired algorithms and their application to traditional software development.
-            </p>
-          </div>
-        </div>
-        
-        <!-- Timeline Item 2 -->
-        <div class="timeline-item relative pb-12">
-          <div class="card-hover p-6 rounded-xl">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-              <h3 class="text-xl font-semibold text-white">
-                Quantum Computing Foundations
-              </h3>
-              <span class="text-sm bg-[rgba(79,70,229,0.1)] text-[var(--quantum-indigo)] px-3 py-1 rounded-full mt-2 md:mt-0">2024 - 2025</span>
-            </div>
-            <p class="text-white/70 mb-2">
-              Sorbonne Université - Paris, France
-            </p>
-            <p class="text-white/60">
-              Introductory studies in mathematics and computer science with quantum computing electives.
-            </p>
-          </div>
-        </div>
-        
-        <!-- Timeline Item 3 -->
-        <div class="timeline-item relative pb-12">
-          <div class="card-hover p-6 rounded-xl">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-              <h3 class="text-xl font-semibold text-white">
-                Quantum Readiness Program
-              </h3>
-              <span class="text-sm bg-[rgba(124,58,237,0.1)] text-[var(--quantum-purple)] px-3 py-1 rounded-full mt-2 md:mt-0">2023 - 2024</span>
-            </div>
-            <p class="text-white/70 mb-2">
-              Sorbonne Université - Paris, France
-            </p>
-            <p class="text-white/60">
-              Academic preparation with focus on future quantum computing curriculum requirements.
-            </p>
-          </div>
-        </div>
+      <div class="interest-card">
+        <i class="fas fa-running"></i>
+        <h3>Sports collectifs</h3>
+      </div>
+      <div class="interest-card">
+        <i class="fas fa-camera"></i>
+        <h3>Photographie</h3>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="py-20 bg-[#1e293b]/50">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex items-center mb-12">
-        <h2 class="text-3xl font-bold gradient-text mr-4">Projects</h2>
-        <div class="flex-1 h-px bg-gradient-to-r from-[var(--quantum-blue)] to-[var(--quantum-purple)]"></div>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Project 1 -->
-        <div class="card-hover p-6 rounded-xl h-full flex flex-col">
-          <div class="mb-4 relative h-40 rounded-lg overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Quantum Algorithm Visualizer" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-            <div class="absolute bottom-4 left-4">
-              <span class="text-xs bg-[var(--quantum-blue)] text-white px-2 py-1 rounded-full font-bold">QISKIT</span>
-            </div>
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-2">Quantum Algorithm Visualizer</h3>
-          <p class="text-white/70 mb-4 flex-grow">
-            Interactive web application visualizing quantum algorithms in real-time, demonstrating superposition and entanglement principles.
-          </p>
-          <div class="flex justify-between items-center">
-            <a href="#" class="text-[var(--quantum-blue)] hover:text-white transition text-sm font-medium">
-              View Project <i class="fas fa-arrow-right ml-1"></i>
-            </a>
-            <div class="flex space-x-2">
-              <a href="#" class="text-white/50 hover:text-[var(--quantum-blue)] transition">
-                <i class="fab fa-github"></i>
-              </a>
-              <a href="#" class="text-white/50 hover:text-[var(--quantum-blue)] transition">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Project 2 -->
-        <div class="card-hover p-6 rounded-xl h-full flex flex-col">
-          <div class="mb-4 relative h-40 rounded-lg overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="Quantum Cryptography Demo" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-            <div class="absolute bottom-4 left-4">
-              <span class="text-xs bg-[var(--quantum-indigo)] text-white px-2 py-1 rounded-full font-bold">CIRQ</span>
-            </div>
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-2">Quantum Cryptography Demo</h3>
-          <p class="text-white/70 mb-4 flex-grow">
-            Demonstration of quantum key distribution (QKD) using BB84 protocol, simulating photon polarization states.
-          </p>
-          <div class="flex justify-between items-center">
-            <a href="#" class="text-[var(--quantum-blue)] hover:text-white transition text-sm font-medium">
-              View Project <i class="fas fa-arrow-right ml-1"></i>
-            </a>
-            <div class="flex space-x-2">
-              <a href="#" class="text-white/50 hover:text-[var(--quantum-blue)] transition">
-                <i class="fab fa-github"></i>
-              </a>
-              <a href="#" class="text-white/50 hover:text-[var(--quantum-blue)] transition">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Project 3 -->
-        <div class="card-hover p-6 rounded-xl h-full flex flex-col">
-          <div class="mb-4 relative h-40 rounded-lg overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" alt="Quantum Neural Network" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-            <div class="absolute bottom-4 left-4">
-              <span class="text-xs bg-[var(--quantum-purple)] text-white px-2 py-1 rounded-full font-bold">TENSORFLOW</span>
-            </div>
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-2">Quantum Neural Network</h3>
-          <p class="text-white/70 mb-4 flex-grow">
-            Hybrid classical-quantum neural network implementation for pattern recognition, achieving exponential speedup.
-          </p>
-          <div class="flex justify-between items-center">
-            <a href="#" class="text-[var(--quantum-blue)] hover:text-white transition text-sm font-medium">
-              View Project <i class="fas fa-arrow-right ml-1"></i>
-            </a>
-            <div class="flex space-x-2">
-              <a href="#" class="text-white/50 hover:text-[var(--quantum-blue)] transition">
-                <i class="fab fa-github"></i>
-              </a>
-              <a href="#" class="text-white/50 hover:text-[var(--quantum-blue)] transition">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+  <section id="contact" class="fade-in">
+    <h2>Contact</h2>
+    <div class="contact-info">
+      <p><i class="fas fa-phone"></i><a href="tel:+33745246861"> +33 7 45 24 68 61</a></p>
+      <p><i class="fas fa-envelope"></i><a href="mailto:yasirtasal1@gmail.com"> yasirtasal1@gmail.com</a></p>
+      <p><i class="fab fa-linkedin"></i><a href="https://linkedin.com/in/ahmad-yasir-tasal" target="_blank"> linkedin.com/in/ahmad-yasir-tasal</a></p>
+      <p><i class="fab fa-github"></i><a href="https://github.com/yasirtasal" target="_blank"> github.com/yasirtasal</a></p>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-20">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex items-center mb-12">
-        <h2 class="text-3xl font-bold gradient-text mr-4">Contact</h2>
-        <div class="flex-1 h-px bg-gradient-to-r from-[var(--quantum-blue)] to-[var(--quantum-purple)]"></div>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-social">
+        <a href="https://linkedin.com/in/ahmad-yasir-tasal" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/yasirtasal" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:yasirtasal1@gmail.com"><i class="fas fa-envelope"></i></a>
       </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div>
-          <h3 class="text-xl font-semibold text-white mb-6">Get In Touch</h3>
-          <p class="text-white/80 mb-8">
-            Interested in discussing quantum computing, potential projects, or opportunities? Feel free to reach out through any of these channels.
-          </p>
-          
-          <div class="space-y-6">
-            <div class="flex items-start">
-              <div class="bg-[rgba(37,99,235,0.1)] p-3 rounded-lg mr-4">
-                <i class="fas fa-envelope text-[var(--quantum-blue)]"></i>
-              </div>
-              <div>
-                <h4 class="font-medium text-white">Email</h4>
-                <a href="mailto:yasirtasal1@gmail.com" class="text-white/70 hover:text-[var(--quantum-blue)] transition">yasirtasal1@gmail.com</a>
-              </div>
-            </div>
-            
-            <div class="flex items-start">
-              <div class="bg-[rgba(79,70,229,0.1)] p-3 rounded-lg mr-4">
-                <i class="fas fa-phone-alt text-[var(--quantum-indigo)]"></i>
-              </div>
-              <div>
-                <h4 class="font-medium text-white">Phone</h4>
-                <a href="tel:+33745246861" class="text-white/70 hover:text-[var(--quantum-blue)] transition">+33 7 45 24 68 61</a>
-              </div>
-            </div>
-            
-            <div class="flex items-start">
-              <div class="bg-[rgba(124,58,237,0.1)] p-3 rounded-lg mr-4">
-                <i class="fab fa-linkedin-in text-[var(--quantum-purple)]"></i>
-              </div>
-              <div>
-                <h4 class="font-medium text-white">LinkedIn</h4>
-                <a href="https://linkedin.com/in/ahmad-yasir-tasal" target="_blank" class="text-white/70 hover:text-[var(--quantum-blue)] transition">linkedin.com/in/ahmad-yasir-tasal</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card-hover p-8 rounded-xl">
-          <h3 class="text-xl font-semibold text-white mb-6">Send a Message</h3>
-          
-          <form class="space-y-4">
-            <div>
-              <label for="name" class="block text-sm font-medium text-white/80 mb-2">Name</label>
-              <input type="text" id="name" class="w-full bg-[#1e293b] border border-[#334155] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[var(--quantum-blue)]">
-            </div>
-            
-            <div>
-              <label for="email" class="block text-sm font-medium text-white/80 mb-2">Email</label>
-              <input type="email" id="email" class="w-full bg-[#1e293b] border border-[#334155] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[var(--quantum-blue)]">
-            </div>
-            
-            <div>
-              <label for="subject" class="block text-sm font-medium text-white/80 mb-2">Subject</label>
-              <input type="text" id="subject" class="w-full bg-[#1e293b] border border-[#334155] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[var(--quantum-blue)]">
-            </div>
-            
-            <div>
-              <label for="message" class="block text-sm font-medium text-white/80 mb-2">Message</label>
-              <textarea id="message" rows="4" class="w-full bg-[#1e293b] border border-[#334155] rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-[var(--quantum-blue)]"></textarea>
-            </div>
-            
-            <button type="submit" class="w-full bg-gradient-to-r from-[var(--quantum-blue)] to-[var(--quantum-purple)] text-white py-3 rounded-lg font-bold mt-4 hover:shadow-lg transition">
-              Send Message
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-12 border-t border-[#1e293b]">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex flex-col items-center">
-        <a href="#" class="text-2xl font-bold gradient-text mb-6">Ahmad Yasir Tasal</a>
-        
-        <div class="flex space-x-6 mb-8">
-          <a href="https://linkedin.com/in/ahmad-yasir-tasal" target="_blank" class="text-white/50 hover:text-[var(--quantum-blue)] transition text-xl">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="https://github.com/yasirtasal" target="_blank" class="text-white/50 hover:text-[var(--quantum-blue)] transition text-xl">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="mailto:yasirtasal1@gmail.com" class="text-white/50 hover:text-[var(--quantum-blue)] transition text-xl">
-            <i class="fas fa-envelope"></i>
-          </a>
-        </div>
-        
-        <p class="text-white/40 text-sm">
-          © 2025 Ahmad Yasir Tasal. All rights reserved.
-        </p>
-      </div>
+      <p class="copyright">© 2025 Ahmad Yasir Tasal. Tous droits réservés.</p>
     </div>
   </footer>
 
   <script>
     // Mobile menu toggle
-    const menuButton = document.getElementById('menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
     
-    menuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-      menuButton.innerHTML = mobileMenu.classList.contains('hidden') ? 
-        '<i class="fas fa-bars text-xl"></i>' : '<i class="fas fa-times text-xl"></i>';
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuBtn.innerHTML = navLinks.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
     });
     
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        menuButton.innerHTML = '<i class="fas fa-bars text-xl"></i>';
+        navLinks.classList.remove('active');
+        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
       });
     });
     
@@ -666,42 +645,24 @@
         
         if (targetElement) {
           window.scrollTo({
-            top: targetElement.offsetTop - 80,
+            top: targetElement.offsetTop - 70,
             behavior: 'smooth'
           });
         }
       });
     });
     
-    // Animate skill bars on scroll
-    const skillBars = document.querySelectorAll('.skill-progress');
-    
-    const animateSkillBars = () => {
-      skillBars.forEach(bar => {
-        const width = bar.style.width;
-        bar.style.width = '0';
-        setTimeout(() => {
-          bar.style.width = width;
-        }, 100);
-      });
-    };
-    
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
+    // Scroll animations
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (entry.target.classList.contains('skill-progress')) {
-            animateSkillBars();
-          }
-          
-          observer.unobserve(entry.target);
+          entry.target.classList.add('visible');
         }
       });
     }, { threshold: 0.1 });
     
-    document.querySelectorAll('.skill-progress').forEach(el => {
-      observer.observe(el);
-    });
+    fadeEls.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
